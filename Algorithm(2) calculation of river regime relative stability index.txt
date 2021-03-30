@@ -1,0 +1,331 @@
+Public Sub practice()
+Close #1
+Open "d:\111.txt" For Append As #1
+Dim title1name As String
+title1name = InputBox("请拾取河段起始点", , "单击确定以继续")
+Dim hdstartpoint As Variant
+hdstartpoint = ThisDrawing.Utility.GetPoint(, "拾取河段起始点")
+MsgBox ("请确定选取河段起始点的x坐标：" & hdstartpoint(0))
+Dim title2name As String
+title2name = InputBox("请拾取河段終点", , "单击确定以继续")
+Dim hdendpoint As Variant
+hdendpoint = ThisDrawing.Utility.GetPoint(, "拾取河段终点")
+MsgBox ("请确定选取河段终点的x坐标：" & hdendpoint(0))
+Dim xihuanum As Integer
+xihuanum = InputBox("请输入细化数目", , "0")
+MsgBox ("细化数目为:" & xihuanum)
+Dim title3name As String
+title3name = InputBox("请依次选择断面", , "单击确定以继续")
+Dim dm_sset As AcadSelectionSet
+Dim duanmian As String
+For Each dm_sset In ThisDrawing.SelectionSets
+   If dm_sset.Name = "duanmian" Then
+        ThisDrawing.SelectionSets.Item("duanmian").Delete
+Exit For
+    End If
+Next
+    Set dm_sset = ThisDrawing.SelectionSets.Add("duanmian")
+    dm_sset.SelectOnScreen
+Dim duanmiannum As Integer
+ duanmiannum = dm_sset.Count
+MsgBox ("所选择的断面数目为：" & duanmiannum)
+Dim duanmianl() As AcadLine
+ReDim duanmianl(dm_sset.Count - 1)
+Dim a As Integer
+For a = 0 To duanmiannum - 1
+Set duanmianl(a) = dm_sset.Item(a)
+Next a
+Dim title5name As String
+title5name = InputBox("请依次选择第一年主流线", , "单击确定以继续")
+Dim zhuliu1_sset As AcadSelectionSet
+Dim zhuliu1 As String
+For Each zhuliu1_sset In ThisDrawing.SelectionSets
+   If zhuliu1_sset.Name = "zhuliu1" Then
+        ThisDrawing.SelectionSets.Item("zhuliu1").Delete
+Exit For
+    End If
+Next
+    Set zhuliu1_sset = ThisDrawing.SelectionSets.Add("zhuliu1")
+   zhuliu1_sset.SelectOnScreen
+MsgBox ("所选择的断面数目为：" & zhuliu1_sset.Count)
+Dim zhuliul1() As AcadSpline
+ReDim zhuliul1(zhuliu1_sset.Count - 1)
+Dim g As Integer
+For g = 0 To zhuliu1_sset.Count - 1
+Set zhuliul1(g) = zhuliu1_sset.Item(g)
+Next g
+Dim title6name As String
+title6name = InputBox("请依次选择第二年主流线", , "单击确定以继续")
+Dim zhuliu2_sset As AcadSelectionSet
+Dim zhuliu2 As String
+For Each zhuliu2_sset In ThisDrawing.SelectionSets
+   If zhuliu2_sset.Name = "zhuliu2" Then
+        ThisDrawing.SelectionSets.Item("zhuliu2").Delete
+Exit For
+    End If
+Next
+    Set zhuliu2_sset = ThisDrawing.SelectionSets.Add("zhuliu2")
+   zhuliu2_sset.SelectOnScreen
+MsgBox ("所选择的断面数目为：" & zhuliu2_sset.Count)
+Dim zhuliul2() As AcadSpline
+ReDim zhuliul2(zhuliu2_sset.Count - 1)
+Dim h As Integer
+For h = 0 To zhuliu2_sset.Count - 1
+Set zhuliul2(h) = zhuliu2_sset.Item(h)
+Next h
+Dim title7name As String
+title7name = InputBox("请依次选择第三年主流线", , "单击确定以继续")
+Dim zhuliu3_sset As AcadSelectionSet
+Dim zhuliu3 As String
+For Each zhuliu3_sset In ThisDrawing.SelectionSets
+   If zhuliu3_sset.Name = "zhuliu3" Then
+        ThisDrawing.SelectionSets.Item("zhuliu3").Delete
+Exit For
+    End If
+Next
+    Set zhuliu3_sset = ThisDrawing.SelectionSets.Add("zhuliu3")
+   zhuliu3_sset.SelectOnScreen
+MsgBox ("所选择的断面数目为：" & zhuliu3_sset.Count)
+Dim zhuliul3() As AcadSpline
+ReDim zhuliul3(zhuliu3_sset.Count - 1)
+Dim j As Integer
+For j = 0 To zhuliu3_sset.Count - 1
+Set zhuliul3(j) = zhuliu3_sset.Item(j)
+Next j
+Dim title8name As String
+title8name = InputBox("请依次选择第四年主流线", , "单击确定以继续")
+Dim zhuliu4_sset As AcadSelectionSet
+Dim zhuliu4 As String
+For Each zhuliu4_sset In ThisDrawing.SelectionSets
+   If zhuliu4_sset.Name = "zhuliu4" Then
+        ThisDrawing.SelectionSets.Item("zhuliu4").Delete
+Exit For
+    End If
+Next
+    Set zhuliu4_sset = ThisDrawing.SelectionSets.Add("zhuliu4")
+   zhuliu4_sset.SelectOnScreen
+MsgBox ("所选择的断面数目为：" & zhuliu4_sset.Count)
+Dim zhuliul4() As AcadSpline
+ReDim zhuliul4(zhuliu4_sset.Count - 1)
+Dim k As Integer
+For k = 0 To zhuliu4_sset.Count - 1
+Set zhuliul4(k) = zhuliu4_sset.Item(k)
+Next k
+Dim title9name As String
+title9name = InputBox("请依次选择河道（左岸）边界线", , "单击确定以继续")
+Dim hekuan1_sset As AcadSelectionSet
+Dim hekuan1 As String
+For Each hekuan1_sset In ThisDrawing.SelectionSets
+   If hekuan1_sset.Name = "hekuan1" Then
+        ThisDrawing.SelectionSets.Item("hekuan1").Delete
+Exit For
+    End If
+Next
+    Set hekuan1_sset = ThisDrawing.SelectionSets.Add("hekuan1")
+   hekuan1_sset.SelectOnScreen
+MsgBox ("所选择的断面数目为：" & hekuan1_sset.Count)
+Dim hekuanl1() As AcadSpline
+ReDim hekuanl1(hekuan1_sset.Count - 1)
+Dim l As Integer
+For l = 0 To hekuan1_sset.Count - 1
+Set hekuanl1(l) = hekuan1_sset.Item(l)
+Next l
+Dim title10name As String
+title10name = InputBox("请依次选择河道（右岸）边界线", , "单击确定以继续")
+Dim hekuan2_sset As AcadSelectionSet
+Dim hekuan2 As String
+For Each hekuan2_sset In ThisDrawing.SelectionSets
+   If hekuan2_sset.Name = "hekuan2" Then
+        ThisDrawing.SelectionSets.Item("hekuan2").Delete
+Exit For
+    End If
+Next
+    Set hekuan2_sset = ThisDrawing.SelectionSets.Add("hekuan2")
+   hekuan2_sset.SelectOnScreen
+MsgBox ("所选择的断面数目为：" & hekuan2_sset.Count)
+Dim hekuanl2() As AcadSpline
+ReDim hekuanl2(hekuan2_sset.Count - 1)
+Dim m As Integer
+For m = 0 To hekuan2_sset.Count - 1
+Set hekuanl2(m) = hekuan2_sset.Item(m)
+Next m
+Dim title4name As String
+title4name = InputBox("请选择新生断面", , "单击确定以继续")
+Dim dmxin_sset As AcadSelectionSet
+Dim needcopyline As String
+For Each dmxin_sset In ThisDrawing.SelectionSets
+   If dmxin_sset.Name = "needcopyline" Then
+        ThisDrawing.SelectionSets.Item("needcopyline").Delete
+Exit For
+    End If
+Next
+    Set dmxin_sset = ThisDrawing.SelectionSets.Add("needcopyline")
+    dmxin_sset.SelectOnScreen
+Dim needcopylinenum As Integer
+ needcopylinenum = dmxin_sset.Count
+Dim needcopylinel() As AcadLine
+ReDim needcopylinel(dmxin_sset.Count - 1)
+Dim z As Integer
+For z = 0 To needcopylinenum - 1
+Set needcopylinel(z) = dmxin_sset.Item(z)
+Next z
+Dim duanmiand As Double
+duanmiand = (hdendpoint(0) - hdstartpoint(0)) / (xihuanum - 1)
+Dim frompoint1(0 To 2) As Double
+Dim topoint1(0 To 2) As Double
+Dim topoint2(0 To 2) As Double
+topoint2(0) = 0.01
+topoint2(1) = 0
+topoint2(2) = 0
+frompoint1(0) = 0
+frompoint1(1) = 0
+frompoint1(2) = 0
+Dim e As Integer
+Dim evedmline1() As AcadLine
+ReDim evedmline1(xihuanum - 1)
+Dim evedmline2() As AcadLine
+ReDim evedmline2(xihuanum - 1)
+Dim dmintpoints1 As Variant
+Dim dmintpoints2 As Variant
+Dim sinangle1 As Double
+Dim sinangle2 As Double
+Dim hekuand As Double
+Dim hkintpoints1 As Variant
+Dim hkintpoints2 As Variant
+Dim intpoints1 As Variant
+Dim intpoints2 As Variant
+Dim intpoints3 As Variant
+Dim intpoints4 As Variant
+Dim S11() As Double
+ReDim S11(xihuanum - 1)
+Dim S12() As Double
+ReDim S12(xihuanum - 1)
+Dim S21() As Double
+ReDim S21(xihuanum - 1)
+Dim S22() As Double
+ReDim S22(xihuanum - 1)
+Dim S31() As Double
+ReDim S31(xihuanum - 1)
+Dim S32() As Double
+ReDim S32(xihuanum - 1)
+Dim absS() As Double
+ReDim absS(xihuanum - 1)
+Dim v2() As Double
+ReDim v2(xihuanum - 1)
+Dim v3() As Double
+ReDim v3(xihuanum - 1)
+Dim absv() As Double
+ReDim absv(xihuanum - 1)
+Dim a3() As Double
+ReDim a3(xihuanum - 1)
+Dim absa() As Double
+ReDim absa(xihuanum - 1)
+Dim zhibiao() As Double
+ReDim zhibiao(xihuanum - 1)
+Dim zfxishu1 As Integer
+Dim zfxishu2 As Integer
+Dim zfxishu3 As Integer
+Dim sum As Double
+Dim duanmianjishu As Double
+Dim aversum As Double
+sum = 0
+duanmianjishu = 0
+Dim redjishu As Integer
+Dim greenjishu As Integer
+Dim yellowjishu As Integer
+yellowjishu = 0
+redjishu = 0
+greenjishu = 0
+For e = 0 To xihuanum - 1
+topoint1(0) = e * duanmiand
+topoint1(1) = 0
+topoint1(2) = 0
+Set evedmline1(e) = needcopylinel(0).Copy
+evedmline1(e).Move frompoint1, topoint1
+Set evedmline2(e) = evedmline1(e).Copy
+evedmline2(e).Move frompoint1, topoint2
+For k = 0 To zhuliu4_sset.Count - 1
+dmintpoints1 = evedmline1(e).IntersectWith(zhuliul4(k), acExtendNone)
+dmintpoints2 = evedmline2(e).IntersectWith(zhuliul4(k), acExtendNone)
+If UBound(dmintpoints1) = 2 And UBound(dmintpoints2) = 2 Then
+sinangle1 = (dmintpoints2(1) - dmintpoints1(1)) / 0.01
+sinangle2 = Atn(sinangle1)
+evedmline1(e).Rotate dmintpoints1, sinangle2
+End If
+Next k
+evedmline2(e).Delete
+For l = 0 To hekuan1_sset.Count - 1
+hkintpoints1 = evedmline1(e).IntersectWith(hekuanl1(l), acExtendNone)
+For m = 0 To hekuan2_sset.Count - 1
+hkintpoints2 = evedmline1(e).IntersectWith(hekuanl2(m), acExtendNone)
+If UBound(hkintpoints1) = 2 And UBound(hkintpoints2) = 2 Then
+hekuand = ((hkintpoints2(0) - hkintpoints1(0)) ^ 2 + (hkintpoints2(1) - hkintpoints1(1)) ^ 2) ^ (1 / 2)
+For g = 0 To zhuliu1_sset.Count - 1
+intpoints1 = evedmline1(e).IntersectWith(zhuliul1(g), acExtendNone)
+For h = 0 To zhuliu2_sset.Count - 1
+intpoints2 = evedmline1(e).IntersectWith(zhuliul2(h), acExtendNone)
+For j = 0 To zhuliu3_sset.Count - 1
+intpoints3 = evedmline1(e).IntersectWith(zhuliul3(j), acExtendNone)
+For k = 0 To zhuliu4_sset.Count - 1
+intpoints4 = evedmline1(e).IntersectWith(zhuliul4(k), acExtendNone)
+If UBound(intpoints1) = 2 And UBound(intpoints2) = 2 And UBound(intpoints3) = 2 And UBound(intpoints4) = 2 Then
+  S11(e) = ((intpoints2(0) - intpoints1(0)) ^ 2 + (intpoints2(1) - intpoints1(1)) ^ 2) ^ (1 / 2)
+     If intpoints1(1) >= intpoints2(1) Then
+     zfxishu1 = 1
+     Else: zfxishu1 = -1
+     End If
+  S12(e) = S11(e) * zfxishu1
+  S21(e) = ((intpoints3(0) - intpoints2(0)) ^ 2 + (intpoints3(1) - intpoints2(1)) ^ 2) ^ (1 / 2)
+     If intpoints2(1) >= intpoints3(1) Then
+     zfxishu2 = 1
+     Else: zfxishu2 = -1
+     End If
+  S22(e) = S21(e) * zfxishu2
+  S31(e) = ((intpoints4(0) - intpoints3(0)) ^ 2 + (intpoints4(1) - intpoints3(1)) ^ 2) ^ (1 / 2)
+     If intpoints3(1) >= intpoints4(1) Then
+     zfxishu3 = 1
+     Else: zfxishu3 = -1
+     End If
+  S32(e) = S31(e) * zfxishu3
+  absS(e) = Abs(S32(e))
+  v2(e) = S22(e) - S12(e)
+  v3(e) = S32(e) - S22(e)
+  absv(e) = Abs(v3(e))
+  a3(e) = v3(e) - v2(e)
+  absa(e) = Abs(a3(e))
+  zhibiao(e) = CLng((0.512 * absS(e) + absv(e) + 0.94 * absa(e))) / hekuand
+  If zhibiao(e) >= 2 Then
+    If zhibiao(e) > 4.5 Then
+     evedmline1(e).color = acRed
+      redjishu = redjishu + 1
+    Else: evedmline1(e).color = acYellow
+        yellowjishu = yellowjishu + 1
+        End If
+  Else: evedmline1(e).color = acGreen
+        greenjishu = greenjishu + 1
+  End If
+  sum = sum + zhibiao(e)
+  duanmianjishu = duanmianjishu + 1
+  Print #1, e + 1, zhibiao(e)
+Else
+End If
+Next k
+Next j
+Next h
+Next g
+Else
+End If
+Next m
+Next l
+Next e
+aversum = sum / duanmianjishu
+MsgBox ("河段稳定性指标平均值" & aversum)
+MsgBox ("不稳定断面数：" & redjishu)
+MsgBox ("过渡断面数：" & yellowjishu)
+MsgBox ("稳定断面数：" & greenjishu)
+MsgBox ("通过第一个断面的指标进行验证：" & zhibiao(0))
+Close #1
+End Sub
+
+
+
